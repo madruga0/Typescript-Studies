@@ -1,9 +1,13 @@
-var num = 15;
-var msg = "Hello world";
-console.log(num);
-console.log(msg);
-function productPrice(price) {
-    var productName = "Apple";
-    console.log(price);
-}
-productPrice(25);
+// class Users {
+//   // properties
+//   name: string; // property
+//   private balance: number; // property
+var product1;
+product1 = {
+    name: "Apple",
+    value: 2,
+    itemPurchased: function (msg) {
+        console.log(msg + ' ' + this.name);
+    },
+};
+product1.itemPurchased('You just bought an');

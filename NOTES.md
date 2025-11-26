@@ -73,32 +73,49 @@
     - podemos adicionar mais, quantos quisermos
 
 ## intersection -> IPC
+
     - consigo pegar dois ou mais alias e criar um unico fazendo a intersection deles
 
 ## compiler
+
     - tsconfig.json >> todas as configs do projeto
     - index.ts <<-- compiler / tsconfig.json --->> index.js
     - * tsc --watch <fileName> faz a compilacao automatica do meu projeto
 
 ## include AND exclude
-    - tenho 5 ts scripts, 
+
+    - tenho 5 ts scripts,
     - pura logica
     - utilizar da forma que for mais logica na hora de incluir ou excluir
 
 ## target
+
     - nada mais do que as **versoes do javascript**
     - entendendo que alguns browsers suportam determinada versao,
     - algumas versoes terao suas particularidades
 
-# habilitando o source map
+## habilitando o source map
+
     - cria um arquivo de mapemento que o browser vai conseguir ler
     - vai ajudar no debug la na frente na execucao do nosso codigo
-## rootDir X outDir
-    - 
 
+## OOP & interfaces
 
+    - os objetos se comunicam um com os outros
+    - um objeto eh composto de PROPERTIES and METHODS
 
+## classes
 
+    - eh a fabrica de carro
+
+## Public && Private
+
+    - nao devem ser alterados fora da classe.
+
+## Interface
+
+    - qualquer momento que alguem crie um objeto, e esse objeto vai ser associado a alguma interface, esse objeto, obrigatoriamente, precisa ter a mesma quantidade de informacao que
+    essa interface possui
 
 
 
@@ -255,4 +272,55 @@ const emp1: Employee = {
 console.log(emp1);
 
 // associou dois types dentro de um so
+
+
+
+
+// OOP
+class Users {
+  // properties
+  name: string; // property
+  balance: number; // property
+
+  constructor(n: string, b: number) {
+    this.name = n;
+    this.balance = b;
+  }
+
+  // methods
+  addMoney(amount: number) {
+    this.balance += amount;
+  }
+}
+
+const user1 = new Users("Pedro", 514);
+
+user1.addMoney(100);
+
+const user2 = new Users("Brenda", 478);
+
+console.log(user1);
+console.log(user2);
+
+
+// Interface
+interface Item {
+  name: string;
+  value: number;
+  itemPurchased(msg: string): void;
+}
+
+let product1: Item;
+
+product1 = {
+  name: "Apple",
+  value: 2,
+  itemPurchased(msg) {
+    console.log(msg + ' ' + this.name);
+  },
+};
+
+
+product1.itemPurchased('You just bought an')
+
 ```

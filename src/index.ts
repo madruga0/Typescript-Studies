@@ -1,42 +1,32 @@
-// class Users {
-//   // properties
-//   name: string; // property
-//   private balance: number; // property
+// INHERITANCE -> classe padrao que contem todos os atributos, e a partir dela, eu crio as outras
+class Person {
+  constructor(
+    public firstName: string,
+    public lastName: string,
+    public age: number
+  ) {}
 
-//   constructor(n: string, b: number) {
-//     this.name = n;
-//     this.balance = b;
-//   }
-
-//   // methods
-//   addMoney(amount: number) {
-//     this.balance += amount;
-//   }
-// }
-
-// const user1 = new Users("Pedro", 514);
-// user1.balance = 500;
-// user1.addMoney(100);
-// const user2 = new Users("Brenda", 478);
-
-// console.log(user1);
-// console.log(user2);
-
-interface Item {
-  name: string;
-  value: number;
-  itemPurchased(msg: string): void;
+  get greet() {
+    return this.firstName + " " + this.lastName;
+  }
 }
 
-let product1: Item;
+// Cliente do banco
+class Client extends Person {
+  override get greet() {
+    return "Dear " + super.greet;
+  }
+}
 
-product1 = {
-  name: "Apple",
-  value: 2,
-  itemPurchased(msg) {
-    console.log(msg + ' ' + this.name);
-  },
-};
+// Funcionario do banco
+class Staff extends Person {
+  override get greet() {
+    return "Hi, " + this.firstName + " " + this.lastName;
+  }
+}
 
+let client1 = new Client("Pedro", "Madruga", 23);
+let staff1 = new Staff("Ana", "Maria", 50);
 
-product1.itemPurchased('You just bought an')
+console.log(client1.greet);
+console.log(staff1.greet);

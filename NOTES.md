@@ -117,15 +117,36 @@
     - qualquer momento que alguem crie um objeto, e esse objeto vai ser associado a alguma interface, esse objeto, obrigatoriamente, precisa ter a mesma quantidade de informacao que
     essa interface possui
 
+# readOnly X private
 
+    - temos uma diferenca entre ser ACESSADA fora da classe e ser MODIFICADA fora da classe
+    - readOnly -> posso acessar, mas nao posso alterar
+    - private -> nao posso acessar, logo, nao altero
 
+## Parametro do construtor
 
+    - public nos parametros para iniciar com a instanciacao do construtor
+    - quando for 'private', coloca _letName
+    - interessante porque as variaveis ja serao iniciadas na declaracao da classe
 
+# Index Signatures
 
+    - quando precisamos criar uma classe, mas a property nao eh fixa.
+    - queremos criar a property depois, na criacao do objeto
+    - deixamos a property em branco, mas definimos o seu type
+    - [roomNumber: string]: string; // property que sera definida quando eu criar o objeto
 
+# Inheritance
 
+    - defino uma classe padrao
+    - a partir dessa classe, classes menores serao criadas (childs)
 
-## code and explications
+# Overriding
+
+    - pegar um metodo que ta no padrao, e nos childs, voce sobrescreve partes ou o metodo todo
+    - override get method()
+
+# Code and explications
 
 ```js
 let price = 40;
@@ -323,4 +344,92 @@ product1 = {
 
 product1.itemPurchased('You just bought an')
 
+// READONLY VS PRIVATE
+
+class Movies {
+
+  readonly id: number;
+  readonly name: string;
+
+  constructor(id: number, name: string) {
+    this.id = id;
+    this.name = name;
+  }
+}
+
+let movie1 = new Movies(1, "Rambo");
+// movie1.id = 3
+console.log(movie1)
+
+
+
+// Parametro do construtor
+class Movies {
+  // readonly id: number;
+  // readonly name: string;
+
+  constructor(
+    public readonly id: number,
+    public name: string,
+    private _price: number
+  ) {
+    // this.id = id;
+    // this.name = name;
+  }
+}
+
+let movie1 = new Movies(1, "Rambo", 25);
+console.log(movie1);
+
+// public nos parametros do construtor -> inicia na instanciacao do construtor
+
+
+// INDEX SIGNATURES
+class HotelRooms {
+  [roomNumber: string]: string; // property que sera definida quando eu criar o objeto
+}
+
+let room = new HotelRooms();
+
+room.A201 = "Pedro"; // vamos criar a property
+room.A202 = "Brenda";
+room.A203 = "Familia";
+
+console.log(room);
+// AMAZING -> armazenar dinamicamente properties dentro da minha classe;
+
+
+
+// INHERITANCE -> classe padrao que contem todos os atributos, e a partir dela, eu crio as outras
+class Person {
+  constructor(
+    public firstName: string,
+    public lastName: string,
+    public age: number
+  ) {}
+
+  get greet() {
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+// Cliente do banco
+class Client extends Person {
+  override get greet() {
+    return "Dear " + super.greet;
+  }
+}
+
+// Funcionario do banco
+class Staff extends Person {
+  override get greet() {
+    return "Hi, " + this.firstName + " " + this.lastName;
+  }
+}
+
+let client1 = new Client("Pedro", "Madruga", 23);
+let staff1 = new Staff("Ana", "Maria", 50);
+
+console.log(client1.greet);
+console.log(staff1.greet);
 ```
